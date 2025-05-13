@@ -1,13 +1,12 @@
 @extends('layout')
 
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        <h2 class="text-center">Student Application</h2>
+        <h2 class="text-center">Student List</h2>
     </div>
     <div class="card-body">
-        <a href="{{ url('/students/create') }}" class="btn btn-success btn-sm mb-3" tittle="Add New Student">
+        <a href="{{ route('students.create') }}" class="btn btn-success btn-sm mb-3">
             <i class="fa fa-plus"></i> Add New
         </a>
 
@@ -19,6 +18,8 @@
                         <th>Name</th>
                         <th>Address</th>
                         <th>Mobile</th>
+                        <th>Email</th>
+                        <th>Batch</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -29,6 +30,8 @@
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->address }}</td>
                             <td>{{ $item->mobile }}</td>
+                            <td>{{ $item->email }}</td>
+                            <td>{{ $item->batch->name ?? 'N/A' }}</td>
                             <td>
                                 <a href="{{ url('/students/' . $item->id) }}" class="btn btn-info btn-sm" title="View">
                                     <i class="fa fa-eye"></i>
@@ -43,11 +46,6 @@
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </form>
-                                @can('manage-students')
-                                    <a href="{{ route('students.create') }}" class="btn btn-primary">
-                                        Add New Student
-                                    </a>
-                                @endcan
                             </td>
                         </tr>
                     @endforeach
@@ -56,5 +54,4 @@
         </div>
     </div>
 </div>
-
 @endsection

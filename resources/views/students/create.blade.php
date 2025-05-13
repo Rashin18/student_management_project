@@ -6,7 +6,7 @@
     <div class="card-body">
         <form action="{{ route('students.store') }}" method="POST">
             @csrf
-            
+
             @if($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -65,6 +65,16 @@
                        class="form-control @error('mobile') is-invalid @enderror" 
                        value="{{ old('mobile') }}" required>
                 @error('mobile')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" 
+                       class="form-control @error('email') is-invalid @enderror" 
+                       value="{{ old('email') }}" required>
+                @error('email')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
